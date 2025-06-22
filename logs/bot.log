@@ -1,0 +1,93 @@
+2025-06-22 16:40:50,007:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2025-06-22 16:40:50,013:INFO:discord.client: logging in using static token
+2025-06-22 16:41:21,662:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2025-06-22 16:41:21,665:INFO:discord.client: logging in using static token
+2025-06-22 16:41:24,127:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 1f80a6cfec9bca92c30d789142d27d72).
+2025-06-22 16:41:26,135:INFO:root: Logged in as Gencorp#5447 (ID: 1386306857118863431)
+2025-06-22 16:42:44,322:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2025-06-22 16:42:44,325:INFO:discord.client: logging in using static token
+2025-06-22 16:42:46,657:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 122d859aa1ffd7e9e6f86001840421ba).
+2025-06-22 16:42:48,659:INFO:root: Logged in as Gencorp#5447 (ID: 1386306857118863431)
+2025-06-22 16:48:16,870:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2025-06-22 16:51:23,972:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2025-06-22 16:51:23,975:INFO:discord.client: logging in using static token
+2025-06-22 16:51:26,524:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: c1bfdb04d647ce71baf5350a8558f7ae).
+2025-06-22 16:51:28,527:INFO:root: Logged in as Gencorp#5447 (ID: 1386306857118863431)
+2025-06-22 16:52:28,509:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2025-06-22 16:52:28,511:INFO:discord.client: logging in using static token
+2025-06-22 16:52:30,855:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 7926d275fe14ff8841306c0127a16f4e).
+2025-06-22 16:52:32,869:ERROR:discord.client: Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "C:\Users\usman\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\ext\commands\bot.py", line 963, in _load_from_module_spec
+    await setup(self)
+TypeError: object NoneType can't be used in 'await' expression
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\usman\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\client.py", line 481, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\usman\OneDrive\Desktop\Gencorp\main.py", line 80, in on_ready
+    await load_extensions()
+  File "C:\Users\usman\OneDrive\Desktop\Gencorp\main.py", line 65, in load_extensions
+    await bot.load_extension(f'extensions.{filename[:-3]}')
+  File "C:\Users\usman\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\ext\commands\bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "C:\Users\usman\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\ext\commands\bot.py", line 968, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'extensions.automod' raised an error: TypeError: object NoneType can't be used in 'await' expression
+2025-06-22 16:53:20,789:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2025-06-22 16:53:20,791:INFO:discord.client: logging in using static token
+2025-06-22 16:53:23,125:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 83d9ef07dfb2c732b169dccd3efdbc1b).
+2025-06-22 16:53:25,138:ERROR:discord.client: Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "C:\Users\usman\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\ext\commands\bot.py", line 963, in _load_from_module_spec
+    await setup(self)
+TypeError: object NoneType can't be used in 'await' expression
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\usman\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\client.py", line 481, in _run_event
+    await coro(*args, **kwargs)
+  File "C:\Users\usman\OneDrive\Desktop\Gencorp\main.py", line 80, in on_ready
+    await load_extensions()
+  File "C:\Users\usman\OneDrive\Desktop\Gencorp\main.py", line 65, in load_extensions
+    await bot.load_extension(f'extensions.{filename[:-3]}')
+  File "C:\Users\usman\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\ext\commands\bot.py", line 1029, in load_extension
+    await self._load_from_module_spec(spec, name)
+  File "C:\Users\usman\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\ext\commands\bot.py", line 968, in _load_from_module_spec
+    raise errors.ExtensionFailed(key, e) from e
+discord.ext.commands.errors.ExtensionFailed: Extension 'extensions.news' raised an error: TypeError: object NoneType can't be used in 'await' expression
+2025-06-22 16:55:36,371:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2025-06-22 16:55:36,372:INFO:discord.client: logging in using static token
+2025-06-22 16:55:39,531:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: cf9cac4fcf2e406dd60cedd74dd09a70).
+2025-06-22 16:55:41,552:INFO:root: Logged in as Gencorp#5447 (ID: 1386306857118863431)
+2025-06-22 16:56:55,870:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2025-06-22 16:56:55,871:INFO:discord.client: logging in using static token
+2025-06-22 16:56:58,155:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 617b6fc57e6a7b4195c6b2449d9ee6bb).
+2025-06-22 16:57:00,171:INFO:root: Logged in as Gencorp#5447 (ID: 1386306857118863431)
+2025-06-22 16:59:14,796:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2025-06-22 16:59:14,798:INFO:discord.client: logging in using static token
+2025-06-22 16:59:17,142:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 4dfdccb651127de14e9e62da86fa24db).
+2025-06-22 16:59:19,156:INFO:root: Logged in as Gencorp#5447 (ID: 1386306857118863431)
+2025-06-22 17:01:42,149:ERROR:discord.ui.view: Ignoring exception in view <TicketActionView timeout=None children=1> for item <Button style=<ButtonStyle.danger: 4> url=None disabled=False label='Close Ticket' emoji=None row=None sku_id=None>
+Traceback (most recent call last):
+  File "C:\Users\usman\AppData\Local\Programs\Python\Python313\Lib\site-packages\discord\ui\view.py", line 435, in _scheduled_task
+    await item.callback(interaction)
+  File "C:\Users\usman\OneDrive\Desktop\Gencorp\extensions\ticket.py", line 75, in close_ticket
+    await discord.utils.sleep_until(discord.utils.utcnow() + discord.utils.timedelta(seconds=10))
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'discord.utils' has no attribute 'timedelta'
+2025-06-22 17:06:33,148:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2025-06-22 17:06:33,149:INFO:discord.client: logging in using static token
+2025-06-22 17:06:35,564:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 330878768f8cd2cb2c9e21e22dc30133).
+2025-06-22 17:06:37,582:INFO:root: Logged in as Gencorp#5447 (ID: 1386306857118863431)
+2025-06-22 17:07:20,764:ERROR:discord.ext.commands.bot: Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "summonpanel" is not found
+2025-06-22 17:10:12,753:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2025-06-22 17:10:12,754:INFO:discord.client: logging in using static token
+2025-06-22 17:10:15,279:INFO:discord.gateway: Shard ID None has connected to Gateway (Session ID: 1f5a5c70300ce815108e5a814197c5d0).
+2025-06-22 17:10:17,288:INFO:root: Logged in as Gencorp#5447 (ID: 1386306857118863431)
+2025-06-22 17:11:36,781:ERROR:discord.ext.commands.bot: Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "assign_staff" is not found
