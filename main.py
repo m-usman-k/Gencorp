@@ -7,6 +7,8 @@ import json
 from config import BOT_TOKEN
 from extensions.ticket import OpenTicketButton, TicketActionView
 
+EMBED_COLOR = 0x56DFCF
+
 # Logging setup
 if not os.path.exists('logs'):
     os.makedirs('logs')
@@ -38,27 +40,67 @@ bot = commands.Bot(command_prefix='!', intents=intents, help_command=None)
 
 views_registered = False  # Flag to ensure views are only registered once
 
-# Custom help command
-def get_command_info():
-    return [
-        ("/help", "Show this help message."),
-        ("/tickets", "Show the ticket panel with a button to open a ticket."),
-        ("/ticketpanel", "Re-summon the ticket panel in a channel."),
-        ("/set_welcome_channel <#channel>", "Set the welcome channel (supreme only)."),
-        ("/set_ticket_category <category>", "Set the ticket category (supreme only)."),
-        ("/set_news_channel <type> <#channel>", "Set a news channel for market/crypto/options (supreme only)."),
-        ("/assign_ticket <@user>", "Assign a staff member to the ticket."),
-        ("/rename_ticket <new-name>", "Rename the ticket channel."),
-    ]
+CONFIG_PATH = 'databases/server_config.json'
 
-@bot.command(name="help", help="Show this help message.")
+def is_supreme_leader(user_id):
+    with open(CONFIG_PATH, 'r') as f:
+        data = json.load(f)
+    return user_id in data.get('supreme_leader_ids', [])
+
+# New help command as a slash command, grouped by category
+@bot.hybrid_command(name="help", description="Show this help message.")
 async def help_command(ctx):
-    # Remove the default help command if it exists
-    if "help" in bot.all_commands and bot.all_commands["help"] != help_command:
-        bot.remove_command("help")
-    embed = discord.Embed(title="Gencorp Assistant Help", color=discord.Color.green())
-    description = "\n".join([f"`{cmd}`: {desc}" for cmd, desc in get_command_info()])
-    embed.description = description
+    if not is_supreme_leader(ctx.author.id):
+        embed = discord.Embed(description="You do not have permission to use this command.", color=EMBED_COLOR)
+        await ctx.send(embed=embed, ephemeral=True)
+        return
+    # Group commands by category, only names, sorted by length
+    categories = {
+        "General": [
+            "help",
+        ],
+        "Tickets": [
+            "tickets",
+            "add-to-ticket",
+            "remove-from-ticket",
+            "summon-ticket-panel",
+            "set-ticket-category",
+        ],
+        "Welcome": [
+            "set-welcome-channel",
+        ],
+        "News": [
+            "set-news-category",
+        ],
+        "Admin": [
+            "add-supreme-leader",
+        ],
+    }
+    embed = discord.Embed(title="Gencorp Assistant Help", color=EMBED_COLOR)
+    for cat, cmds in categories.items():
+        sorted_cmds = sorted(cmds, key=len)
+        desc = '\n'.join([f"/{name}" for name in sorted_cmds])
+        embed.add_field(name=cat, value=f"```\n{desc}\n```", inline=False)
+    # Always send as embed, whether in DM or channel
+    await ctx.send(embed=embed)
+
+# Command for server owner to add a supreme leader
+@bot.hybrid_command(name="add-supreme-leader", description="Add a new supreme leader (server owner only).")
+async def add_supreme_leader(ctx, user: discord.User):
+    if ctx.author.id != ctx.guild.owner_id:
+        embed = discord.Embed(description="Only the server owner can add supreme leaders.", color=EMBED_COLOR)
+        await ctx.send(embed=embed, ephemeral=True)
+        return
+    # Update config file
+    with open(CONFIG_PATH, 'r+') as f:
+        data = json.load(f)
+        supreme_ids = set(data.get('supreme_leader_ids', []))
+        supreme_ids.add(user.id)
+        data['supreme_leader_ids'] = list(supreme_ids)
+        f.seek(0)
+        json.dump(data, f, indent=2)
+        f.truncate()
+    embed = discord.Embed(description=f"{user.mention} has been added as a supreme leader.", color=EMBED_COLOR)
     await ctx.send(embed=embed)
 
 # Load cogs/extensions
@@ -81,6 +123,7 @@ async def on_ready():
         conn.close()
         views_registered = True
     await load_extensions()
+    await bot.tree.sync()
     logging.info(f'Logged in as {bot.user} (ID: {bot.user.id})')
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
 

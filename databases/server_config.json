@@ -1,9 +1,13 @@
 {
-  "welcome_channel": null,
-  "ticket_category": null,
+  "welcome_channel": 1388112964435050639,
+  "ticket_category": 1388114404473573439,
   "news_channels": {
-    "market": null,
-    "crypto": null,
-    "options": null
-  }
-} 
+    "market": 1388114056199671858,
+    "crypto": 1388114058112405596,
+    "options": 1388114060733845555
+  },
+  "supreme_leader_ids": [
+    1155936906274672730,
+    1337403525465903157
+  ]
+}

@@ -3,6 +3,8 @@ from discord.ext import commands
 import re
 import logging
 
+EMBED_COLOR = 0x56DFCF
+
 BLACKLIST = [
     'badword1', 'badword2', 'scamword'  # Add more as needed
 ]
@@ -21,20 +23,23 @@ class AutoMod(commands.Cog):
         for word in BLACKLIST:
             if word in message.content.lower():
                 await message.delete()
-                await message.channel.send(f'{message.author.mention}, that word is not allowed here.', delete_after=5)
+                embed = discord.Embed(description=f'{message.author.mention}, that word is not allowed here.', color=EMBED_COLOR)
+                await message.channel.send(embed=embed, delete_after=5)
                 logging.info(f'Blacklisted word deleted from {message.author} in {message.channel}')
                 return
         # Discord invite links
         if re.search(INVITE_REGEX, message.content):
             await message.delete()
-            await message.channel.send(f'{message.author.mention}, invite links are not allowed.', delete_after=5)
+            embed = discord.Embed(description=f'{message.author.mention}, invite links are not allowed.', color=EMBED_COLOR)
+            await message.channel.send(embed=embed, delete_after=5)
             logging.info(f'Invite link deleted from {message.author} in {message.channel}')
             return
         # Scam link protection
         for scam in SCAM_LINKS:
             if scam in message.content.lower():
                 await message.delete()
-                await message.channel.send(f'{message.author.mention}, scam links are not allowed.', delete_after=5)
+                embed = discord.Embed(description=f'{message.author.mention}, scam links are not allowed.', color=EMBED_COLOR)
+                await message.channel.send(embed=embed, delete_after=5)
                 logging.info(f'Scam link deleted from {message.author} in {message.channel}')
                 return
         # Do NOT call process_commands here to avoid double command invocation
